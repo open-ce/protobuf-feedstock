@@ -1,0 +1,6 @@
+recipes:
+  - name : libprotobuf
+    path : libprotobuf_recipe
+
+  - name : protobuf
+    path : protobuf_recipe
