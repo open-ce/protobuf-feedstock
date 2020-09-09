@@ -1,0 +1,59 @@
+{% set name = "protobuf" %}
+{% set version = "3.9.2" %}
+{% set sha256 = "1fbf1c2962af287607232b2eddeaec9b4f4a7a6f5934e1a9276e9af76952f7e0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/google/protobuf/archive/v{{ version }}/{{ name}}-v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 1
+  string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - zlib {{ zlib }}
+    - python {{ python }}
+    - setuptools {{ setuptools }}
+    - libprotobuf {{ version }}
+    - six {{ six }}
+  run:
+    - zlib                       # versioning handled by run_exports 
+    - python {{ python }}
+    - libprotobuf {{ version }}
+    - six {{ six }}
+
+test:
+  commands:
+    - python -c "from google.protobuf.internal import api_implementation; assert api_implementation.Type() == 'cpp'"
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+  imports:
+    - google
+    - google.protobuf
+    - google.protobuf.internal
+    - google.protobuf.pyext
+    - google.protobuf.util
+    - google.protobuf.compiler
+
+about:
+  home: https://developers.google.com/protocol-buffers/
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: ../LICENSE
+  summary: "Protocol Buffers - Google's data interchange format."
+  description: |
+    Protocol buffers are Google's language-neutral, platform-neutral, extensible
+    mechanism for serializing structured data,think XML, but smaller, faster, and simpler.
+  doc_url: https://developers.google.com/protocol-buffers/docs/tutorials
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
+
