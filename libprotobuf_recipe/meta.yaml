@@ -33,11 +33,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
-    - autoconf {{ autoconf }}
-    - automake {{ automake }}
-    - libtool {{ libtool }}
+    - autoconf
+    - automake
+    - libtool
     - pkg-config {{ pkg_config }}
-    - unzip {{ unzip }}
+    - unzip
   host:
     - zlib {{ zlib }}
   run:
