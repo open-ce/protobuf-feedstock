@@ -22,7 +22,7 @@ source:
     folder: third_party/googletest
 
 build:
-  number: 1
+  number: 2
   run_exports:
     # breaks backwards compatibility and new SONAME each minor release
     # https://abi-laboratory.pro/tracker/timeline/protobuf/
@@ -33,11 +33,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
-    - autoconf {{ autoconf }}
-    - automake {{ automake }}
-    - libtool {{ libtool }}
+    - autoconf
+    - automake
+    - libtool
     - pkg-config {{ pkg_config }}
-    - unzip {{ unzip }}
+    - unzip
   host:
     - zlib {{ zlib }}
   run:
