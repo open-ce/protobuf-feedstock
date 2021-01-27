@@ -45,7 +45,7 @@ requirements:
 
 test:
   requires:
-    - conda-build {{ conda_build }}
+    - conda-build =={{ conda_build }}
   commands:
     - protoc --help
     - test -f ${PREFIX}/lib/libprotobuf.a
