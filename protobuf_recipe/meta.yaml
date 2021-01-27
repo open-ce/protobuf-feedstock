@@ -31,6 +31,8 @@ requirements:
     - six {{ six }}
 
 test:
+  requires:
+    - conda-build =={{ conda_build }}
   commands:
     - python -c "from google.protobuf.internal import api_implementation; assert api_implementation.Type() == 'cpp'"
     - conda inspect linkages -p $PREFIX $PKG_NAME
