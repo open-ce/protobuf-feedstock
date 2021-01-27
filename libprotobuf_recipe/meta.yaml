@@ -44,13 +44,10 @@ requirements:
     - zlib                        # versioning handled by run_exports
 
 test:
-  requires:
-    - conda-build =={{ conda_build }}
   commands:
     - protoc --help
     - test -f ${PREFIX}/lib/libprotobuf.a
     - test -f ${PREFIX}/lib/libprotobuf${SHLIB_EXT}
-    - conda inspect linkages -p $PREFIX $PKG_NAME
 
 about:
   home: https://developers.google.com/protocol-buffers/
