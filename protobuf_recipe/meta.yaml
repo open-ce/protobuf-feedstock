@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 2
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
 
 requirements:
@@ -33,7 +33,6 @@ requirements:
 test:
   commands:
     - python -c "from google.protobuf.internal import api_implementation; assert api_implementation.Type() == 'cpp'"
-    - conda inspect linkages -p $PREFIX $PKG_NAME
   imports:
     - google
     - google.protobuf
