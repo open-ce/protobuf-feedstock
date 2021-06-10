@@ -11,19 +11,25 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 3
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   host:
     - zlib {{ zlib }}
     - python {{ python }}
     - setuptools {{ setuptools }}
     - libprotobuf {{ version }}
     - six {{ six }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - zlib                       # versioning handled by run_exports 
     - python {{ python }}
