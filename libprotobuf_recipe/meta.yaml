@@ -50,6 +50,10 @@ requirements:
     - zlib                        # versioning handled by run_exports
 
 test:
+  requires:
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   commands:
     - protoc --help
     - test -f ${PREFIX}/lib/libprotobuf.a

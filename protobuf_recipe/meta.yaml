@@ -37,6 +37,10 @@ requirements:
     - six {{ six }}
 
 test:
+  requires:
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   commands:
     - python -c "from google.protobuf.internal import api_implementation; assert api_implementation.Type() == 'cpp'"
   imports:
