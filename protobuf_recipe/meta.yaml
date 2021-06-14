@@ -13,6 +13,9 @@ source:
 build:
   number: 3
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
+  ignore_run_exports:
+    - libgcc-ng
+    - libstdcxx-ng
 
 requirements:
   build:
@@ -35,12 +38,11 @@ requirements:
     - python {{ python }}
     - libprotobuf {{ version }}
     - six {{ six }}
-
-test:
-  requires:
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}
     - libstdcxx-ng  {{ libstdcxx }}
+
+test:
   commands:
     - python -c "from google.protobuf.internal import api_implementation; assert api_implementation.Type() == 'cpp'"
   imports:
