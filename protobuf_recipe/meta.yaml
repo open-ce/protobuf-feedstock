@@ -11,11 +11,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 3
+  number: 4 
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
-  ignore_run_exports:
-    - libgcc-ng
-    - libstdcxx-ng
 
 requirements:
   build:
@@ -38,9 +35,6 @@ requirements:
     - python {{ python }}
     - libprotobuf {{ version }}
     - six {{ six }}
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
 
 test:
   commands:
