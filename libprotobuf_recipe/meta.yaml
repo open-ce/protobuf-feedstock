@@ -22,7 +22,7 @@ source:
     folder: third_party/googletest
 
 build:
-  number: 5
+  number: 6
   run_exports:
     # breaks backwards compatibility and new SONAME each minor release
     # https://abi-laboratory.pro/tracker/timeline/protobuf/
@@ -33,8 +33,8 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
+    - libgcc-ng  {{ libgcc }}               # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}         # [x86_64 and c_compiler_version == "7.2.*"]
     - make
     - autoconf
     - automake
@@ -44,8 +44,8 @@ requirements:
   host:
     - zlib {{ zlib }}
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
+    - libgcc-ng  {{ libgcc }}               # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}         # [x86_64 and c_compiler_version == "7.2.*"]
   run:
     - zlib                        # versioning handled by run_exports
 
